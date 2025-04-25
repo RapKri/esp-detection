@@ -12,16 +12,16 @@ ESP-Detection provides a series of ultra-lightweight models along with APIs that
 
 ## Cat Detection Example
 
-| Model                                                                                                                                                                 | Input size | mAP<sup>val<br>0.5:0.95 | mAP<sup>val<br>0.5 | Params<br><sup>(M) | FLOPS<br><sup>(G) | Latency<sup><small>[ESP32-P4](#latency)</small><sup><br><sup>(ms) | Latency<sup><small>[ESP32-S3](#latency)</small><sup><br><sup>(ms) |
-|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------:|:-----------------------:|:------------------:|:------------------:|:-----------------:|:-----------------------------------------------------------------:|:-----------------------------------------------------------------:|
-| [espdet_pico_224_224_cat](https://gitlab.espressif.cn:6688/ai/esp-detection/-/raw/init/examples/cat_detection/espdet_pico_224_224_cat.pt?ref_type=heads&inline=false) |  224*224   |          69.9           |        88.4        |        0.36        |       0.17        |                               51.4                                |                               126.2                               |
-| [espdet_pico_416_416_cat](https://gitlab.espressif.cn:6688/ai/esp-detection/-/raw/init/examples/cat_detection/espdet_pico_416_416_cat.pt?ref_type=heads&inline=false) |  416*416   |          76.6           |        93.4        |        0.36        |       0.60        |                               201.7                               |                               449.5                               |
+| Model                                                                                                      | Input size | mAP<sup>val<br>0.5:0.95 | mAP<sup>val<br>0.5 | Params<br><sup>(M) | FLOPS<br><sup>(G) | Latency<sup><small>[ESP32-P4](#latency)</small><sup><br><sup>(ms) | Latency<sup><small>[ESP32-S3](#latency)</small><sup><br><sup>(ms) |
+|:-----------------------------------------------------------------------------------------------------------|:----------:|:-----------------------:|:------------------:|:------------------:|:-----------------:|:-----------------------------------------------------------------:|:-----------------------------------------------------------------:|
+| [espdet_pico_224_224_cat](./examples/cat_detection/espdet_pico_224_224_cat.pt)                             |  224*224   |          69.9           |        88.4        |        0.36        |       0.17        |                               51.4                                |                               126.2                               |
+| [espdet_pico_416_416_cat](./examples/cat_detection/espdet_pico_416_416_cat.pt) |  416*416   |          76.6           |        93.4        |        0.36        |       0.60        |                               201.7                               |                               449.5                               |
 
 - **mAP<sup>val</sup>** values are for single-model sing-scale on cat subset of [COCO val2017](https://cocodataset.org/) dataset.
 
 ## Updates
 
-- 2025/04/23: esp-detection 1.0.0 is public. [Cat Detection](https://gitlab.espressif.cn:6688/ai/esp-detection) is available.
+- 2025/04/23: esp-detection 1.0.0 is public. [Cat Detection](./examples/cat_detection) is available.
 
 
 ## Installation
@@ -59,7 +59,7 @@ python espdet_run.py \
 idf.py set-target esp32p4
 idf.py flash monitor
 ```
-- If your change ```espdet.jpg``` to customized test image, please set its width and height in ```app_main.cpp```.
+- If replacing ```espdet.jpg``` with a custom image, ensure its width and height are correctly set in ```app_main.cpp```.
 
 ## Feedback
 
