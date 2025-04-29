@@ -1,6 +1,6 @@
 # ESP-Detection 
 
-ESP-Detection is a lightweight and ESP-optimized project based on [Ultralytics YOLOv11](https://github.com/ultralytics/ultralytics), designed for real-time object detection on ESP series chips. It allows you effortlessly train a detection model for specific target and deploy the model on chips easily and quickly.
+ESP-Detection is a lightweight and ESP-optimized project based on [Ultralytics YOLOv11](https://github.com/ultralytics/ultralytics), designed for real-time object detection on ESP series chips. It allows you effortlessly train a detection model for specific target and deploy the model on chips easily by [ESP_DL](https://github.com/espressif/esp-dl).
 
 ## Overview
 
@@ -55,6 +55,8 @@ python espdet_run.py \
 - MPS, CPU, Single-GPU and Multi-GPU training are supported in esp-detection. Please refer to [Ultralytics YOLO Docs](https://docs.ultralytics.com/modes/train/) for more information. Specifically, you can set your own train settings according to [Train Settings](https://docs.ultralytics.com/modes/train/#train-settings) from Ultralytics.
 
 ### Step 3: Inference on chips
+Please refer to [esp-dl/examples](https://github.com/espressif/esp-dl/tree/master/examples) for inference on chips.
+
 ```bash
 idf.py set-target esp32p4
 idf.py flash monitor
