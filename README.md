@@ -31,6 +31,7 @@ conda create -n espdet python=3.8
 conda activate espdet
 pip install -r requirements.txt
 ```
+- ESP-IDF is not required during model training, but is mandatory when running the quantized model on ESP chips. For setup instructions, please refer to [ESP-IDF Programming Guide](https://idf.espressif.com/), and make sure to use [ESP-IDF](https://github.com/espressif/esp-idf) ```release/v5.3``` or above.
 
 ## Quick start
 
@@ -55,14 +56,16 @@ python espdet_run.py \
 - MPS, CPU, Single-GPU and Multi-GPU training are supported in esp-detection. Please refer to [Ultralytics YOLO Docs](https://docs.ultralytics.com/modes/train/) for more information. Specifically, you can set your own train settings according to [Train Settings](https://docs.ultralytics.com/modes/train/#train-settings) from Ultralytics.
 
 ### Step 3: Inference on chips
-Please refer to [esp-dl/examples](https://github.com/espressif/esp-dl/tree/master/examples) for inference on chips.
 
+Once Step 2 is completed, an example will be automatically generated. You can use it to perform model inference on ESP32-S3 or ESP32-P4. Similar to other [esp-dl/examples](https://github.com/espressif/esp-dl/tree/master/examples), it enables customized model inference on a single input image and prints the results to the terminal.
+
+You can run the example directly in the terminal with the following command:
 ```bash
+cd path/to/custom_example
 idf.py set-target esp32p4
 idf.py flash monitor
 ```
 - If replacing ```espdet.jpg``` with a custom image, ensure its width and height are correctly set in ```app_main.cpp```.
-
 ## Feedback
 
 Please submit an [issue](https://github.com/espressif/esp-detection/issues) if you find any problems using our products, and we will reply as soon as possible.
