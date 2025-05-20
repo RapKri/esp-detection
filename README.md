@@ -37,7 +37,7 @@ pip install -r requirements.txt
 
 ### Step 1: Prepare dataset
 
-Dataset format in esp-detection follows the [YOLO detection dataset format](https://docs.ultralytics.com/datasets/detect/). To convert your existing dataset from other formats (like COCO etc.) to YOLO format, please use [JSON2YOLO](https://github.com/ultralytics/JSON2YOLO) tool by Ultralytics.
+Dataset format in esp-detection follows the [YOLO detection dataset format](https://docs.ultralytics.com/datasets/detect/). To convert your existing dataset from other formats (like COCO etc.) to YOLO format, please use [converter.py](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/data/converter.py) by Ultralytics.
 
 ### Step 2: Train and deploy the model
 
@@ -65,7 +65,6 @@ cd path/to/custom_example
 idf.py set-target esp32p4
 idf.py flash monitor
 ```
-- If replacing ```espdet.jpg``` with a custom image, ensure its width and height are correctly set in ```app_main.cpp```.
 ## Feedback
 
 Please submit an [issue](https://github.com/espressif/esp-detection/issues) if you find any problems using our products, and we will reply as soon as possible.
