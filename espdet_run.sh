@@ -5,5 +5,5 @@ python espdet_run.py \
   --size 224 \
   --target "esp32p4" \
   --calib_data "deploy/cat_calib" \
-  --espdl "espdet_coco_224_224_mycat.espdl" \
+  --espdl "espdet_pico_224_224_mycat.espdl" \
   --img "espdet.jpg"

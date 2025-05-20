@@ -10,7 +10,7 @@ def Train(pretrained_path=None, dataset="cfg/datasets/coco_cat.yaml", imgsz=224)
     """
     tasks.parse_model = custom_parse_model  # add ESP-customized block
     # load the model
-    if pretrained_path is not None: # use pretrained weights
+    if pretrained_path not in [None, 'None']: # use pretrained weights
         model = YOLO(pretrained_path)
     else:
         model = YOLO('cfg/models/espdet_pico.yaml') # # build a new model from YAML if you don't need to load a pretrained model

@@ -62,8 +62,8 @@ def run(class_name, pretrained_path, dataset, size, target, calib_data, espdl, i
     # download esp-dl
     esp_dl_url = "https://github.com/espressif/esp-dl.git"
     esp_dl_path = "esp-dl"
-    if not os.path.exists(esp_dl_path):
-        subprocess.run(["git", "clone", esp_dl_url, esp_dl_path])
+    # if not os.path.exists(esp_dl_path):
+    subprocess.run(["git", "clone", esp_dl_url, esp_dl_path])
 
     examples_path = os.path.join(esp_dl_path, "examples")
     models_path = os.path.join(esp_dl_path, "models")
@@ -80,6 +80,8 @@ def run(class_name, pretrained_path, dataset, size, target, calib_data, espdl, i
         "custom": class_name,
         "CUSTOM": class_name.upper(),
         "imgsz": str(size),
+        "espdet.jpg": img,
+        "espdet_jpg": os.path.splitext(img)[0] + "_jpg",
     }
 
     rename_project(Path(custom_example_path), replacements)
