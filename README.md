@@ -50,7 +50,7 @@ python espdet_run.py \
   --size 224 \
   --target "esp32p4" \
   --calib_data "deploy/cat_calib" \
-  --espdl "espdet_coco_224_224_mycat.espdl" \
+  --espdl "espdet_pico_224_224_mycat.espdl" \
   --img "espdet.jpg"
 ```
 - MPS, CPU, Single-GPU and Multi-GPU training are supported in esp-detection. Please refer to [Ultralytics YOLO Docs](https://docs.ultralytics.com/modes/train/) for more information. Specifically, you can set your own train settings according to [Train Settings](https://docs.ultralytics.com/modes/train/#train-settings) from Ultralytics.
