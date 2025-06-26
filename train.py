@@ -2,7 +2,7 @@ from ultralytics import YOLO
 from nn.esp_tasks import custom_parse_model
 import ultralytics.nn.tasks as tasks
 
-def Train(pretrained_path=None, dataset="cfg/datasets/coco_cat.yaml", imgsz=224):
+def Train(pretrained_path=None, dataset="cfg/datasets/coco_cat.yaml", imgsz=224, **kwargs):
     """
     Train espdet_pico on customized dataset.
     :param pretrained_path: the path of pretrained .pt file, default is None.
@@ -14,7 +14,7 @@ def Train(pretrained_path=None, dataset="cfg/datasets/coco_cat.yaml", imgsz=224)
         model = YOLO(pretrained_path)
     else:
         model = YOLO('cfg/models/espdet_pico.yaml') # # build a new model from YAML if you don't need to load a pretrained model
-    results = model.train(   # you can set your own train settings here.
+    train_setting = dict( # you can set your own train settings here.
         data=dataset,
         epochs=1200, # set to a reasonable epoch
         imgsz=imgsz, # input img shape, 224 means input is 224*224. if you want to train with w ≠ h, you need to set rect=True and imgsz=[h, w]
@@ -27,6 +27,9 @@ def Train(pretrained_path=None, dataset="cfg/datasets/coco_cat.yaml", imgsz=224)
         copy_paste=0.1,
         rect=False,
     )
+    train_setting.update(kwargs)
+    results = model.train(**train_setting)
+
     return results
 
 if __name__ == '__main__':
