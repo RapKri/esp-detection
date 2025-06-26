@@ -40,8 +40,19 @@ def run(class_name, pretrained_path, dataset, size, target, calib_data, espdl, i
     """
     The whole process of realizing a customized detection model, including train, export, quantize a model and deploy it on ESP32 AI chips.
     """
-    print("\033[32mStart training \033[0m")
-    results = Train(pretrained_path, dataset, size)
+    assert isinstance(size, list) and len(size) == 2, "size should be a list, with len(size) = 2."
+    h, w = size
+    if h != w:
+        print("\033[32mAdopt rect=True training strategy \033[0m")
+        print("\033[32mOptional: pre-training \033[0m")
+        # results = Train(pretrained_path=pretrained_path, dataset=dataset, imgsz=max(h, w), rect=False)
+        print("\033[32mStart training \033[0m")
+        # model_path = os.path.join(str(results.save_dir), "weights/best.pt") # use pre-training weights to fine-tune your model
+        # results = Train(model_path, dataset, size, epochs=30, rect=True) # fine-tune epochs = 30~50
+        results = Train(pretrained_path, dataset, size, rect=True)
+    else:
+        print("\033[32mStart training \033[0m")
+        results = Train(pretrained_path, dataset, size)
     # get the save path of best.pt
     model_path = os.path.join(str(results.save_dir), "weights/best.pt")
     print("\033[32mCovert .pt model to ONNX model \033[0m")
@@ -79,7 +90,8 @@ def run(class_name, pretrained_path, dataset, size, target, calib_data, espdl, i
     replacements = {
         "custom": class_name,
         "CUSTOM": class_name.upper(),
-        "imgsz": str(size),
+        "imgH": str(h),
+        "imgW": str(w),
         "espdet.jpg": img,
         "espdet_jpg": os.path.splitext(img)[0] + "_jpg",
     }
@@ -107,11 +119,11 @@ if __name__ == '__main__':
     parser.add_argument("--class_name", type=str, required=True, help="Input object detection target class")
     parser.add_argument("--pretrained_path", type=str, default=None, help="Input pretrained .pt model path")
     parser.add_argument("--dataset", type=str, required=True, help="Input dataset path for train/validate/test")
-    parser.add_argument("--size", type=int, default=224, help="Input resolution, e.g. 224")
+    parser.add_argument("--size", type=int, nargs=2, default=[224, 224], help="Input resolution in [h, w] format, e.g. --size 128 224")
     parser.add_argument("--target", type=str, default="esp32p4", help="Input ESP32 chips, e.g. 'esp32p4', 'esp32s3'")
     parser.add_argument("--calib_data", type=str, required=True, help="Input calibration dataset path")
     parser.add_argument("--espdl", type=str, required=True, help="Output ESP-DL model path")
     parser.add_argument("--img", type=str, required=True, help="Input test img path for running on ESP32-chips")
 
     args = parser.parse_args()
-    run(args.class_name,args.pretrained_path, args.dataset, int(args.size), args.target, args.calib_data, args.espdl, args.img)
+    run(args.class_name,args.pretrained_path, args.dataset, args.size, args.target, args.calib_data, args.espdl, args.img)

@@ -26,8 +26,8 @@ if (NOT CONFIG_ESPDET_DETECT_MODEL_IN_SDCARD)
 
     file(MAKE_DIRECTORY ${BUILD_DIR}/espdl_models)
     set(models)
-    if(CONFIG_ESPDET_PICO_imgsz_imgsz_CUSTOM)
-        list(APPEND models ${models_dir}/espdet_pico_imgsz_imgsz_custom.espdl)
+    if(CONFIG_ESPDET_PICO_imgH_imgW_CUSTOM)
+        list(APPEND models ${models_dir}/espdet_pico_imgH_imgW_custom.espdl)
     endif()
 
 

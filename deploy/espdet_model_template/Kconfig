@@ -1,24 +1,24 @@
 menu "models: custom_detect"
-    config FLASH_ESPDET_PICO_imgsz_imgsz_CUSTOM
-        bool "flash espdet_pico_imgsz_imgsz_custom"
+    config FLASH_ESPDET_PICO_imgH_imgW_CUSTOM
+        bool "flash espdet_pico_imgH_imgW_custom"
         depends on !CAT_DETECT_MODEL_IN_SDCARD
         default y
 
 
     choice
         prompt "default"
-        default ESPDET_PICO_imgsz_imgsz_CUSTOM
+        default ESPDET_PICO_imgH_imgW_CUSTOM
         help
             default custom_detect model
-        config ESPDET_PICO_imgsz_imgsz_CUSTOM
-            bool "espdet_pico_imgsz_imgsz_custom"
-            depends on ESPDET_DETECT_MODEL_IN_SDCARD || FLASH_ESPDET_PICO_imgsz_imgsz_CUSTOM
+        config ESPDET_PICO_imgH_imgW_CUSTOM
+            bool "espdet_pico_imgH_imgW_custom"
+            depends on ESPDET_DETECT_MODEL_IN_SDCARD || FLASH_ESPDET_PICO_imgH_imgW_CUSTOM
     endchoice
 
 
     config DEFAULT_ESPDET_DETECT_MODEL_TYPE
         int
-        default 0 if ESPDET_PICO_imgsz_imgsz_CUSTOM
+        default 0 if ESPDET_PICO_imgH_imgW_CUSTOM
 
     choice
         prompt "model location"
@@ -31,8 +31,8 @@ menu "models: custom_detect"
             bool "flash_partition"
         config ESPDET_DETECT_MODEL_IN_SDCARD
             bool "sdcard"
-            select ESPDET_PICO_imgsz_imgsz_CUSTOM
-            select ESPDET_PICO_imgsz_imgsz_CUSTOM
+            select ESPDET_PICO_imgH_imgW_CUSTOM
+            select ESPDET_PICO_imgH_imgW_CUSTOM
     endchoice
 
     config ESPDET_DETECT_MODEL_LOCATION

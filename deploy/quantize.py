@@ -13,10 +13,11 @@ import onnx
 class CaliDataset(Dataset):
     def __init__(self, path, img_shape=640):
         super().__init__()
+        height, width = img_shape if isinstance(img_shape, (list, tuple)) else (img_shape, img_shape)
         self.transform = transforms.Compose(
             [
                 transforms.ToTensor(),
-                transforms.Resize((img_shape, img_shape)),
+                transforms.Resize((height, width)),
                 transforms.Normalize(mean=[0, 0, 0], std=[1, 1, 1]),
             ]
         )
@@ -43,7 +44,7 @@ def report_hook(blocknum, blocksize, total):
 
 
 def quant_espdet(onnx_path, target, num_of_bits, device, batchsz, imgsz, calib_dir, espdl_model_path):
-    INPUT_SHAPE = [3, imgsz, imgsz]
+    INPUT_SHAPE = [3, *imgsz] if isinstance(imgsz, (list, tuple)) else [3, imgsz, imgsz]
     model = onnx.load(onnx_path)
     sim = True
     if sim:

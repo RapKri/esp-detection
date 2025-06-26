@@ -9,6 +9,7 @@ model = YOLO('examples/cat_detection/espdet_pico_224_224_cat.pt') # load an esp-
 
 # validate the model
 metrics = model.val(data='cfg/datasets/coco_cat.yaml', save_json=True)
+# metrics = model.val(data='cfg/datasets/coco_cat.yaml', rect=True, imgsz=[160, 288])
 metrics.box.map # map50-95
 metrics.box.map50 # map50
 metrics.box.map75 # map75

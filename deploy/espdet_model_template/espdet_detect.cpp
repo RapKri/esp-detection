@@ -43,11 +43,11 @@ ESPDet::ESPDet(const char *model_name)
 ESPDetDetect::ESPDetDetect(model_type_t model_type)
 {
     switch (model_type) {
-    case model_type_t::ESPDET_PICO_imgsz_imgsz_CUSTOM:
-#if CONFIG_ESPDET_PICO_imgsz_imgsz_CUSTOM || CONFIG_CUSTOM_DETECT_MODEL_IN_SDCARD
-        m_model = new espdet_detect::ESPDet("espdet_pico_imgsz_imgsz_custom.espdl");
+    case model_type_t::ESPDET_PICO_imgH_imgW_CUSTOM:
+#if CONFIG_ESPDET_PICO_imgH_imgW_CUSTOM || CONFIG_CUSTOM_DETECT_MODEL_IN_SDCARD
+        m_model = new espdet_detect::ESPDet("espdet_pico_imgH_imgW_custom.espdl");
 #else
-        ESP_LOGE("custom_detect", "espdet_pico_imgsz_imgsz_custom is not selected in menuconfig.");
+        ESP_LOGE("custom_detect", "espdet_pico_imgH_imgW_custom is not selected in menuconfig.");
 #endif
         break;
     }
