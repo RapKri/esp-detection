@@ -7,7 +7,7 @@ ESP-Detection is a lightweight and ESP-optimized project based on [Ultralytics Y
 ESP-Detection provides a series of ultra-lightweight models along with APIs that enables you to train custom detection models tailored to your specific use cases. The offered models are optimized for efficient deployment on  ESP AI chips, like ESP32-P4 and ESP32-S3. The project also includes example applications such as cat detection, dog detection, and pedestrian detection. 
 
 - Competitive mAP: The single-class model ESPDet-Pico(0.36M parameters, 224 input size) achieves comparable mAP(0.5:0.95) to 80-class model YOLOv11n(2.6M parameters, 640 input size) on cat detection.
-- Faster latency: Considering pre-processing and post-processing, espdet_pico achieves >14 FPS on ESP32-P4 and >6 FPS on ESP32-S3 when the input size is 224*224.
+- Faster latency: Considering pre-processing and post-processing, espdet_pico achieves >18 FPS on ESP32-P4 and >7 FPS on ESP32-S3 when the input size is 224*224.
 - Deploy friendly: A complete deployment solution is provided based on [ESP-DL](https://github.com/espressif/esp-dl), offering users an effortless way to deploy custom models.
 
 ## Cat Detection Example
@@ -22,7 +22,7 @@ ESP-Detection provides a series of ultra-lightweight models along with APIs that
 
 ## Updates
 
-- 2025/06/26: We released a cat detection model demonstrating the use of ```rect=True``` for training and deployment on non-square image resolutions, improving both accuracy and speed.  
+- 2025/06/26: We released a cat detection model demonstrating the use of ```rect=True``` for training and deployment on non-square image resolutions, improving both accuracy and speed. 
 - 2025/04/23: esp-detection 1.0.0 is public. [Cat Detection](./examples/cat_detection) is available.
 
 

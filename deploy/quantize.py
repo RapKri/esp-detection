@@ -25,6 +25,8 @@ class CaliDataset(Dataset):
         self.imgs_path = []
         self.path = path
         for img_name in os.listdir(self.path):
+            if not img_name.lower().endswith((".jpg", ".jpeg", ".png", ".bmp")):
+                continue
             img_path = os.path.join(self.path, img_name)
             self.imgs_path.append(img_path)
 

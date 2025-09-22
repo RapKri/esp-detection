@@ -29,13 +29,14 @@ ESPDet::ESPDet(const char *model_name)
 #endif
     m_model->minimize();
 #if CONFIG_IDF_TARGET_ESP32P4
-    m_image_preprocessor =
-        new dl::image::ImagePreprocessor(m_model, {0, 0, 0}, {255, 255, 255}, DL_IMAGE_CAP_RGB565_BIG_ENDIAN);
-#else
     m_image_preprocessor = new dl::image::ImagePreprocessor(m_model, {0, 0, 0}, {255, 255, 255});
+#else
+    m_image_preprocessor = new dl::image::ImagePreprocessor(
+        m_model, {0, 0, 0}, {255, 255, 255}, dl::image::DL_IMAGE_CAP_RGB565_BIG_ENDIAN);
 #endif
-    m_postprocessor =
-        new dl::detect::ESPDetPostProcessor(m_model, 0.25, 0.7, 10, {{8, 8, 4, 4}, {16, 16, 8, 8}, {32, 32, 16, 16}});
+    m_image_preprocessor->enable_letterbox({114, 114, 114});
+    m_postprocessor = new dl::detect::ESPDetPostProcessor(
+        m_model, m_image_preprocessor, 0.25, 0.7, 10, {{8, 8, 4, 4}, {16, 16, 8, 8}, {32, 32, 16, 16}});
 }
 
 } // namespace espdet_detect
@@ -44,7 +45,7 @@ ESPDetDetect::ESPDetDetect(model_type_t model_type)
 {
     switch (model_type) {
     case model_type_t::ESPDET_PICO_imgH_imgW_CUSTOM:
-#if CONFIG_ESPDET_PICO_imgH_imgW_CUSTOM || CONFIG_CUSTOM_DETECT_MODEL_IN_SDCARD
+#if CONFIG_FLASH_ESPDET_PICO_imgH_imgW_CUSTOM || CONFIG_CUSTOM_DETECT_MODEL_IN_SDCARD
         m_model = new espdet_detect::ESPDet("espdet_pico_imgH_imgW_custom.espdl");
 #else
         ESP_LOGE("custom_detect", "espdet_pico_imgH_imgW_custom is not selected in menuconfig.");

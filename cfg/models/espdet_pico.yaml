@@ -40,7 +40,7 @@ head:
   - [[-1, 10], 1, Concat, [1]] # cat head P5                
   - [-1, 2, ESPBlock, [512, False]] # 22 (P5/32-large)
 
-  - [[16, 19, 22], 1, ESPDetect, [1]] # ESPDetect(P3, P4, P5)
+  - [[16, 19, 22], 1, ESPDetect, [nc]] # ESPDetect(P3, P4, P5)
 
 
 

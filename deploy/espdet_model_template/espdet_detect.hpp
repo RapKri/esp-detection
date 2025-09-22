@@ -14,5 +14,5 @@ public:
     typedef enum {
         ESPDET_PICO_imgH_imgW_CUSTOM,
     } model_type_t;
-    ESPDetDetect(model_type_t model_type = static_cast<model_type_t>(CONFIG_DEFAULT_ESPDET_DETECT_MODEL_TYPE));
+    ESPDetDetect(model_type_t model_type = static_cast<model_type_t>(CONFIG_DEFAULT_ESPDET_DETECT_MODEL));
 };
