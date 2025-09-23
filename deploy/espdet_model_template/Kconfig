@@ -16,7 +16,7 @@ menu "models: custom_detect"
     endchoice
 
 
-    config DEFAULT_ESPDET_DETECT_MODEL_TYPE
+    config DEFAULT_ESPDET_DETECT_MODEL
         int
         default 0 if ESPDET_PICO_imgH_imgW_CUSTOM
 
@@ -31,8 +31,7 @@ menu "models: custom_detect"
             bool "flash_partition"
         config ESPDET_DETECT_MODEL_IN_SDCARD
             bool "sdcard"
-            select ESPDET_PICO_imgH_imgW_CUSTOM
-            select ESPDET_PICO_imgH_imgW_CUSTOM
+
     endchoice
 
     config ESPDET_DETECT_MODEL_LOCATION
