@@ -25,7 +25,6 @@ ESP-Detection provides a series of ultra-lightweight models along with APIs that
 - 2025/06/26: We released a cat detection model demonstrating the use of ```rect=True``` for training and deployment on non-square image resolutions, improving both accuracy and speed. 
 - 2025/04/23: esp-detection 1.0.0 is public. [Cat Detection](./examples/cat_detection) is available.
 
-
 ## Installation
 
 ```bash
@@ -33,7 +32,24 @@ conda create -n espdet python=3.8
 conda activate espdet
 pip install -r requirements.txt
 ```
+
+```bash
+uv venv espdet python=3.8
+. espdet/bin/activate
+uv pip install -r requirements.txt
+```
+
 - ESP-IDF is not required during model training, but is mandatory when running the quantized model on ESP chips. For setup instructions, please refer to [ESP-IDF Programming Guide](https://idf.espressif.com/), and make sure to use [ESP-IDF](https://github.com/espressif/esp-idf) ```release/v5.3``` or above.
+
+- used 5.4.2
+- requirements.txt hat to be modified: upgrade to `onnxruntime>=1.19.0` and use old `ultralytics==8.3.112`
+- esp-ppq has changed its exported package name in meantime, therefor change it from `ppq` to `esp_ppq`
+- modifications in yolo settings: `yolo settings`
+  ```sh
+  yolo settings datasets_dir=C:\Users\rapha\Documents\GitHub\esp-detection\datasets
+  yolo settings weights_dir=C:\Users\rapha\Documents\GitHub\esp-detection\weights
+  yolo settings runs_dir=C:\Users\rapha\Documents\GitHub\esp-detection\runs
+  ```
 
 ## Quick start
 
