@@ -18,14 +18,20 @@ def Train(pretrained_path=None, dataset="cfg/datasets/coco_cat.yaml", imgsz=224,
         data=dataset,
         epochs=1200, # set to a reasonable epoch
         imgsz=imgsz, # input img shape, 224 means input is 224*224. if you want to train with w ≠ h, you need to set rect=True and imgsz=[h, w]
-        batch=128,
+        # batch=128,
+        batch=32,
         device="cpu", # "1"
         optimizer='auto',
         close_mosaic=30,
-        mosaic=1.0,
+        # mosaic=1.0,
+        mosaic=0.5,         # Weniger aggressive Augmentation
         mixup=0.0,
         copy_paste=0.1,
         rect=False,
+        lr0=0.001,          # Niedrigere Learning Rate
+        patience=300,  # Erhöht von 100 auf 300
+        dropout=0.2,         # Regularisierung hinzufügen
+        weight_decay=0.001,  # Stärkere Regularisierung
     )
     train_setting.update(kwargs)
     results = model.train(**train_setting)

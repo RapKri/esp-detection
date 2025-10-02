@@ -1,0 +1,403 @@
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+  1200/1200       0.5G      1.278     0.8524          0         18        224: 100%|██████████| 2/2 [00:00<00:00, 18.64it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 1/1 [00:00<00:00, 34.43it/s]
+                   all         16          9          1      0.878      0.913      0.544
+
+1200 epochs completed in 0.110 hours.
+Optimizer stripped from /root/repos/esp-detection/runs/detect/train11/weights/last.pt, 1.1MB
+Optimizer stripped from /root/repos/esp-detection/runs/detect/train11/weights/best.pt, 1.1MB
+
+Validating /root/repos/esp-detection/runs/detect/train11/weights/best.pt...
+Ultralytics 8.3.112 🚀 Python-3.8.20 torch-2.2.0+cu121 CUDA:0 (NVIDIA GeForce RTX 2070, 7787MiB)
+espdet_pico summary: 159 layers, 358,303 parameters, 0 gradients, 1.3 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 1/1 [00:00<00:00, 36.42it/s]
+                   all         16          9      0.888       0.88      0.908      0.622
+Speed: 0.0ms preprocess, 0.5ms inference, 0.0ms loss, 0.3ms postprocess per image
+Results saved to /root/repos/esp-detection/runs/detect/train11
+Covert .pt model to ONNX model 
+Ultralytics 8.3.112 🚀 Python-3.8.20 torch-2.2.0+cu121 CPU (AMD Ryzen 9 5950X 16-Core Processor)
+espdet_pico summary: 159 layers, 358,303 parameters, 0 gradients, 1.3 GFLOPs
+
+PyTorch: starting from '/root/repos/esp-detection/runs/detect/train11/weights/best.pt' with input shape (1, 3, 224, 224) BCHW and output shape(s) ((1, 4, 28, 28), (1, 1, 28, 28), (1, 4, 14, 14), (1, 1, 14, 14), (1, 4, 7, 7), (1, 1, 7, 7)) (1.1 MB)
+
+ONNX: starting export with onnx 1.17.0 opset 13...
+ONNX: simplifying with onnxsim 0.4.36...
+ONNX: export success ✅ 0.4s, saved as '/root/repos/esp-detection/runs/detect/train11/weights/best.onnx' (1.4 MB)
+
+Export complete (0.6s)
+Results saved to /root/repos/esp-detection/runs/detect/train11/weights
+Predict:         yolo predict task=detect model=/root/repos/esp-detection/runs/detect/train11/weights/best.onnx imgsz=224  
+Validate:        yolo val task=detect model=/root/repos/esp-detection/runs/detect/train11/weights/best.onnx imgsz=224 data=cfg/datasets/feces.yaml  
+Visualize:       https://netron.app
+Quantize ONNX model to ESP-DL format 
+[19:10:08] PPQ Layerwise Equalization Pass Running ... 74 equalization pair(s) was found, ready to run optimization.
+Layerwise Equalization:   0%|                                                                                            | 0/4 [00:00<?, ?it/s][/model.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.3/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.3/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.5/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.5/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.6/m.0/m/m.0/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.6/m.0/m/m.1/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.7/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.7/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/m.0/m/m.0/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/m.0/m/m.1/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.9/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.10/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.17/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.20/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.0/cv3.0.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.0/cv3.0.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.1/cv3.0.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.1/cv3.0.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.0/cv3.1.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.0/cv3.1.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.1/cv3.1.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.1/cv3.1.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.0/cv3.2.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.0/cv3.2.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.1/cv3.2.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.1/cv3.2.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.3/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.3/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.5/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.5/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.6/m.0/m/m.0/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.6/m.0/m/m.1/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.7/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.7/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/m.0/m/m.0/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/m.0/m/m.1/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.9/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.10/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.17/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.20/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.0/cv3.0.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.0/cv3.0.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.1/cv3.0.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.1/cv3.0.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.0/cv3.1.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.0/cv3.1.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.1/cv3.1.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.1/cv3.1.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.0/cv3.2.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.0/cv3.2.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.1/cv3.2.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.1/cv3.2.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.3/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.3/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.5/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.5/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.6/m.0/m/m.0/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.6/m.0/m/m.1/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.7/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.7/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/m.0/m/m.0/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/m.0/m/m.1/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.9/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.10/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.17/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.20/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.0/cv3.0.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.0/cv3.0.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.1/cv3.0.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.1/cv3.0.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.0/cv3.1.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.0/cv3.1.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.1/cv3.1.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.1/cv3.1.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.0/cv3.2.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.0/cv3.2.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.1/cv3.2.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.1/cv3.2.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.2/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.3/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.3/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.4/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.5/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.5/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.6/m.0/m/m.0/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.6/m.0/m/m.1/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.7/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.7/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/m.0/m/m.0/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/m.0/m/m.1/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.8/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.9/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.10/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.13/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.16/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.17/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.19/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.20/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/cv1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv2/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/m.0/cv2/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.22/cv2/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.0/cv2.0.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.0/cv3.0.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.0/cv3.0.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.1/cv3.0.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.0/cv3.0.1/cv3.0.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.1/cv2.1.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.0/cv3.1.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.0/cv3.1.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.1/cv3.1.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.1/cv3.1.1/cv3.1.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.0/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.0/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.1/depthwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv2.2/cv2.2.1/pointwise/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.0/cv3.2.0.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.0/cv3.2.0.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.1/cv3.2.1.0/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+[/model.23/cv3.2/cv3.2.1/cv3.2.1.1/conv/Conv(Type: Conv, Num of Input: 3, Num of Output: 1)]
+Layerwise Equalization: 100%|████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00<00:00, 54.59it/s]
+Finished.
+[WARNING][PPQ][2025-10-02 19:10:08]:  Unexpected input value of operation /model.11/Resize, recieving "None" at its input 1
+[WARNING][PPQ][2025-10-02 19:10:08]:  Unexpected input value of operation /model.14/Resize, recieving "None" at its input 1
+[19:10:08] PPQ Quantization Fusion Pass Running ...       Finished.
+[19:10:08] PPQ Quantize Simplify Pass Running ...         Finished.
+[19:10:08] PPQ Parameter Quantization Pass Running ...    Finished.
+Calibration Progress(Phase 1): 100%|███████████████████████████████████████████████████████████████████████████| 32/32 [00:01<00:00, 30.66it/s]
+Calibration Progress(Phase 2): 100%|███████████████████████████████████████████████████████████████████████████| 32/32 [00:01<00:00, 28.61it/s]
+Finished.
+[19:10:11] PPQ Quantization Alignment Pass Running ...    Finished.
+[19:10:11] PPQ Passive Parameter Quantization Running ... Finished.
+--------- Network Snapshot ---------
+Num of Op:                    [217]
+Num of Quantized Op:          [217]
+Num of Variable:              [429]
+Num of Quantized Var:         [429]
+------- Quantization Snapshot ------
+Num of Quant Config:          [666]
+ACTIVATED:                    [204]
+OVERLAPPED:                   [301]
+PASSIVE:                      [154]
+FP32:                         [7]
+Network Quantization Finished.
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_2 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_3 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip onnx::Split_516 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_0 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_1 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_2 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_3 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip onnx::Split_516 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_0 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_1 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_2 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_3 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip onnx::Split_516 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_0 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_1 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_2 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_3 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  skip not QuantableOperation
+[INFO][ESPDL][2025-10-02 19:10:11]:  skip not QuantableOperation
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip onnx::Split_516 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  skip not QuantableOperation
+[INFO][ESPDL][2025-10-02 19:10:11]:  skip not QuantableOperation
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_0 because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  skip not QuantableOperation
+[INFO][ESPDL][2025-10-02 19:10:11]:  skip not QuantableOperation
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-10-02 19:10:11]:  Skip PPQ_Variable_1 because it's not exportable
+Generate CPP Project running on chips 
+fatal: destination path 'esp-dl' already exists and is not an empty directory.
+Replaced in: esp-dl/examples/feces_detect/CMakeLists.txt
+Replaced in: esp-dl/examples/feces_detect/main/idf_component.yml
+Replaced in: esp-dl/examples/feces_detect/main/app_main.cpp
+Replaced in: esp-dl/examples/feces_detect/main/CMakeLists.txt
+Replaced in: esp-dl/models/feces_detect/idf_component.yml
+Replaced in: esp-dl/models/feces_detect/Kconfig
+Replaced in: esp-dl/models/feces_detect/espdet_detect.cpp
+Replaced in: esp-dl/models/feces_detect/CMakeLists.txt
+Replaced in: esp-dl/models/feces_detect/espdet_detect.hpp
+You can run models on chips right now!
+ Please run:
+ cd {custom_example_path}
+ step1: idf.py set-target esp32p4/esp32s3
+ step2: idf.py flash monitor
