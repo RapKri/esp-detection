@@ -32,7 +32,7 @@ ESP-Detection is a lightweight and ESP-optimized project based on [Ultralytics Y
     --target "esp32s3" \
     --calib_data "deploy/feces_calib" \
     --espdl "espdet_pico_224_224_feces.espdl" \
-    --img "espdet.jpg"
+    --img "feces.jpg"
   ```
 
 - device auf "cuda:0" gesetzt
