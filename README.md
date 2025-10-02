@@ -58,6 +58,31 @@ python espdet_run.py \
   --espdl "espdet_pico_224_224_mycat.espdl" \
   --img "espdet.jpg"
 ```
+
+```bash
+python espdet_run.py \
+  --class_name feces \
+  --pretrained_path None \
+  --dataset "cfg/datasets/feces.yaml" \
+  --size 224 224 \
+  --target "esp32s3" \
+  --calib_data "deploy/feces_calib" \
+  --espdl "espdet_pico_224_224_feces.espdl" \
+  --img "espdet.jpg"
+```
+
+```ps
+python espdet_run.py `
+  --class_name feces `
+  --pretrained_path None `
+  --dataset "cfg/datasets/feces.yaml" `
+  --size 224 224 `
+  --target "esp32s3" `
+  --calib_data "deploy/feces_calib" `
+  --espdl "espdet_pico_224_224_feces.espdl" `
+  --img "espdet.jpg"
+```
+
 - MPS, CPU, Single-GPU and Multi-GPU training are supported in esp-detection. Please refer to [Ultralytics YOLO Docs](https://docs.ultralytics.com/modes/train/) for more information. Specifically, you can set your own train settings according to [Train Settings](https://docs.ultralytics.com/modes/train/#train-settings) from Ultralytics.
 
 ### Step 3: Inference on chips

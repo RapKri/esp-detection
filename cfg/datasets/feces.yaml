@@ -1,0 +1,14 @@
+# From https://docs.ultralytics.com/de/datasets/detect/coco8/#dataset-yaml
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: feces-dataset-detect-1 # dataset root dir
+train: images/train   # train images (relative to 'path') 4 images
+val: images/val       # val images (relative to 'path') 4 images
+
+# Classes (background txt empty)
+names:
+  0: feces
+
+# COCO8 Classes
+# nc: 1
+# names: ['feces']
