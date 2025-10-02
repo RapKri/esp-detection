@@ -2,6 +2,40 @@
 
 ESP-Detection is a lightweight and ESP-optimized project based on [Ultralytics YOLOv11](https://github.com/ultralytics/ultralytics), designed for real-time object detection on ESP series chips. It allows you effortlessly train a detection model for specific target and deploy the model on chips easily by [ESP_DL](https://github.com/espressif/esp-dl).
 
+## Own Changes
+
+- uv instead of conda:
+
+  ```bash
+  uv venv espdet --python=3.8
+  . espdet/bin/activate
+  uv pip install -r requirements.txt
+  ```
+
+- used 5.4.2
+- requirements.txt hat to be modified: upgrade to `onnxruntime>=1.19.0` and use old `ultralytics==8.3.112`
+- esp-ppq has changed its exported package name in meantime, therefor change it from `ppq` to `esp_ppq`
+- modifications in yolo settings: `yolo settings`: `yolo settings datasets_dir=/root/repos/esp-detection/datasets`
+
+  ```sh
+  yolo settings datasets_dir=C:\Users\rapha\Documents\GitHub\esp-detection\datasets
+  yolo settings weights_dir=C:\Users\rapha\Documents\GitHub\esp-detection\weights
+  yolo settings runs_dir=C:\Users\rapha\Documents\GitHub\esp-detection\runs
+  ```
+
+- ```bash
+  python espdet_run.py \
+    --class_name feces \
+    --pretrained_path None \
+    --dataset "cfg/datasets/feces.yaml" \
+    --size 224 224 \
+    --target "esp32s3" \
+    --calib_data "deploy/feces_calib" \
+    --espdl "espdet_pico_224_224_feces.espdl" \
+    --img "espdet.jpg"
+    --device "0"
+  ```
+
 ## Overview
 
 ESP-Detection provides a series of ultra-lightweight models along with APIs that enables you to train custom detection models tailored to your specific use cases. The offered models are optimized for efficient deployment on  ESP AI chips, like ESP32-P4 and ESP32-S3. The project also includes example applications such as cat detection, dog detection, and pedestrian detection. 
@@ -33,23 +67,7 @@ conda activate espdet
 pip install -r requirements.txt
 ```
 
-```bash
-uv venv espdet python=3.8
-. espdet/bin/activate
-uv pip install -r requirements.txt
-```
-
 - ESP-IDF is not required during model training, but is mandatory when running the quantized model on ESP chips. For setup instructions, please refer to [ESP-IDF Programming Guide](https://idf.espressif.com/), and make sure to use [ESP-IDF](https://github.com/espressif/esp-idf) ```release/v5.3``` or above.
-
-- used 5.4.2
-- requirements.txt hat to be modified: upgrade to `onnxruntime>=1.19.0` and use old `ultralytics==8.3.112`
-- esp-ppq has changed its exported package name in meantime, therefor change it from `ppq` to `esp_ppq`
-- modifications in yolo settings: `yolo settings`
-  ```sh
-  yolo settings datasets_dir=C:\Users\rapha\Documents\GitHub\esp-detection\datasets
-  yolo settings weights_dir=C:\Users\rapha\Documents\GitHub\esp-detection\weights
-  yolo settings runs_dir=C:\Users\rapha\Documents\GitHub\esp-detection\runs
-  ```
 
 ## Quick start
 
@@ -75,18 +93,6 @@ python espdet_run.py \
   --img "espdet.jpg"
 ```
 
-```bash
-python espdet_run.py \
-  --class_name feces \
-  --pretrained_path None \
-  --dataset "cfg/datasets/feces.yaml" \
-  --size 224 224 \
-  --target "esp32s3" \
-  --calib_data "deploy/feces_calib" \
-  --espdl "espdet_pico_224_224_feces.espdl" \
-  --img "espdet.jpg"
-```
-
 ```ps
 python espdet_run.py `
   --class_name feces `
@@ -97,6 +103,7 @@ python espdet_run.py `
   --calib_data "deploy/feces_calib" `
   --espdl "espdet_pico_224_224_feces.espdl" `
   --img "espdet.jpg"
+  
 ```
 
 - MPS, CPU, Single-GPU and Multi-GPU training are supported in esp-detection. Please refer to [Ultralytics YOLO Docs](https://docs.ultralytics.com/modes/train/) for more information. Specifically, you can set your own train settings according to [Train Settings](https://docs.ultralytics.com/modes/train/#train-settings) from Ultralytics.

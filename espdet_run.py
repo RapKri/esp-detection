@@ -36,7 +36,7 @@ def rename_project(root_dir: Path, replacements: dict):
                 print(f"Failed to process {file}: {e}")
 
 
-def run(class_name, pretrained_path, dataset, size, target, calib_data, espdl, img):
+def run(class_name, pretrained_path, dataset, size, target, calib_data, espdl, img, device="0"):
     """
     The whole process of realizing a customized detection model, including train, export, quantize a model and deploy it on ESP32 AI chips.
     """
@@ -49,10 +49,10 @@ def run(class_name, pretrained_path, dataset, size, target, calib_data, espdl, i
         print("\033[32mStart training \033[0m")
         # model_path = os.path.join(str(results.save_dir), "weights/best.pt") # use pre-training weights to fine-tune your model
         # results = Train(model_path, dataset, size, epochs=30, rect=True) # fine-tune epochs = 30~50
-        results = Train(pretrained_path, dataset, size, rect=True)
+        results = Train(pretrained_path, dataset, size, rect=True, device=device) # fine-tune epochs = 30~50
     else:
         print("\033[32mStart training \033[0m")
-        results = Train(pretrained_path, dataset, size)
+        results = Train(pretrained_path, dataset, size, device=device)
     # get the save path of best.pt
     model_path = os.path.join(str(results.save_dir), "weights/best.pt")
     print("\033[32mCovert .pt model to ONNX model \033[0m")
@@ -63,7 +63,8 @@ def run(class_name, pretrained_path, dataset, size, target, calib_data, espdl, i
         onnx_path=ONNX,
         target=target,
         num_of_bits=8,
-        device='cpu',
+        # device='cpu',
+        device='0',
         batchsz=32,
         imgsz=size,
         calib_dir=calib_data,
@@ -124,6 +125,7 @@ if __name__ == '__main__':
     parser.add_argument("--calib_data", type=str, required=True, help="Input calibration dataset path")
     parser.add_argument("--espdl", type=str, required=True, help="Output ESP-DL model path")
     parser.add_argument("--img", type=str, required=True, help="Input test img path for running on ESP32-chips")
+    parser.add_argument("--device", type=str, default="0", help="Device to run on, e.g. cpu or 0 for gpu")
 
     args = parser.parse_args()
-    run(args.class_name,args.pretrained_path, args.dataset, args.size, args.target, args.calib_data, args.espdl, args.img)
+    run(args.class_name,args.pretrained_path, args.dataset, args.size, args.target, args.calib_data, args.espdl, args.img, args.device)
