@@ -33,8 +33,10 @@ ESP-Detection is a lightweight and ESP-optimized project based on [Ultralytics Y
     --calib_data "deploy/feces_calib" \
     --espdl "espdet_pico_224_224_feces.espdl" \
     --img "espdet.jpg"
-    --device "0"
   ```
+
+- device auf "cuda:0" gesetzt
+- paket `uv pip install onnxruntime-gpu` nachinstalliert
 
 ## Overview
 
